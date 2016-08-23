@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CalendarDemo</string>
+
+    <string name="mergecells_title">合并单元格</string>
+    <string name="custom_title">自定义布局</string>
+
+</resources>
