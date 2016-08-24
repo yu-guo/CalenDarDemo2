@@ -35,12 +35,23 @@ public class TableTestView extends View{
     private final static int STARTY = 25;
 
     //表格的宽度，高度
-    private static float gridWidth;
-    private static float gridHeight;
+    public static float gridWidth;
+    public static float gridHeight;
+
+    public static float getGridWidth() {
+        return gridWidth;
+    }
+
+    public static float getGridHeight() {
+        return gridHeight;
+    }
 
     private List<EventRect> mEventRects;
     private List<EventRect> mCurrentEventRects;
 
+    public List<EventRect> getCurrentEventRects() {
+        return mCurrentEventRects;
+    }
 
     private GestureDetectorCompat mGestureDetector;
 
@@ -48,7 +59,16 @@ public class TableTestView extends View{
     private EventClickListener mEventClickListener;
     private EventLongPressListener mEventLongPressListener;
 
-    private Canvas mCanvas;
+    private RectF mergeRectf;
+    private int mergeNum;
+
+    public void setMergeRectf(RectF mergeRectf) {
+        this.mergeRectf = mergeRectf;
+    }
+
+    public void setMergeNum(int mergeNum) {
+        this.mergeNum = mergeNum;
+    }
 
     public void setEmptyViewClickListener(EmptyViewClickListener emptyViewClickListener) {
         mEmptyViewClickListener = emptyViewClickListener;
@@ -130,7 +150,7 @@ public class TableTestView extends View{
             gridHeight = gridWidth;
         }
 //        Logger.i(STARTX + "," + STARTY);
-//        Logger.i("gridWidth:" + gridWidth + ",gridHeight:" + gridHeight);
+        Logger.i("gridWidth:" + gridWidth + ",gridHeight:" + gridHeight);
 
         super.onSizeChanged(w, h, oldw, oldh);
     }
@@ -138,8 +158,6 @@ public class TableTestView extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        mCanvas = canvas;
 
         if (mEventRects == null) {
             mEventRects = new ArrayList<>();
@@ -194,15 +212,22 @@ public class TableTestView extends View{
                 canvas.drawText(text + "", (int) (mLeft + mRight) >> 1, textBaseY + mTop, paintText);
             }
         }
+
+//        if (mergeRectf != null && mergeNum > 0) {
+//            merge(canvas,mergeRectf,mergeNum);
+//            mergeRectf = null ;
+//            mergeNum = 0;
+//        }
     }
 
-    public void merge(RectF rectF, int mergeNum) {
+    public void merge(Canvas canvas,RectF rectF, int mergeNum) {
         Paint mergePaint = new Paint();
         mergePaint.setStyle(Paint.Style.FILL);
         mergePaint.setColor(Color.rgb(40, 209, 170));
         float right = rectF.left + mergeNum * gridWidth;
         Logger.i(rectF.left + "," + rectF.top + "," + rectF.right + "," + rectF.bottom);
-        mCanvas.drawRect(rectF.left, rectF.top, right, rectF.bottom, mergePaint);
+
+        canvas.drawRect(rectF.left, rectF.top, right, rectF.bottom, mergePaint);
 
 //        invalidate();
     }

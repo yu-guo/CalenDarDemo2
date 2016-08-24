@@ -71,7 +71,10 @@ public class CustomViewActivity extends AppCompatActivity implements EmptyViewCl
                 dialogInterface.dismiss();
                 mergeNum = Integer.valueOf(mET.getText().toString());
                 Logger.i("需要合并：" + mergeNum);
-                mTableTestView.merge(rectF, mergeNum);
+//                mTableTestView.merge(rectF, mergeNum);
+                mTableTestView.setMergeNum(mergeNum);
+                mTableTestView.setMergeRectf(rectF);
+                mTableTestView.invalidate();
             }
         });
         builder.create().show();
@@ -82,5 +85,12 @@ public class CustomViewActivity extends AppCompatActivity implements EmptyViewCl
         showDialog(rectF);
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        RectF rectF = new RectF(287.85715f, 419.2857f, 419.2857f, 550.7143f);
+//        mTableTestView.merge(rectF, 2);
     }
 }

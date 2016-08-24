@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.guoyu.calendardemo.R;
-import com.guoyu.calendardemo.ui.customview.CustomViewActivity;
+import com.guoyu.calendardemo.ui.customview.CustomViewActivity2;
 import com.guoyu.calendardemo.ui.merge.MergeCellsActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 simpleJump(MergeCellsActivity.class);
                 break;
             case R.id.act_main_customview:
-                simpleJump(CustomViewActivity.class);
+                simpleJump(CustomViewActivity2.class);
                 break;
         }
     }

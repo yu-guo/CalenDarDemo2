@@ -21,6 +21,7 @@
         <activity android:name=".ui.customview.CustomViewActivity">
         </activity>
         <activity android:name=".ui.customview.PActivity"/>
+        <activity android:name=".ui.customview.CustomViewActivity2"/>
     </application>
 
 </manifest>
